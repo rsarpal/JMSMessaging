@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="jmsMessaging:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/jmsMessaging_jar</output-path>
+    <root id="archive" name="jmsMessaging.jar">
+      <element id="module-output" name="jmsMessaging" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../lib/com.ibm.mq.allclient-9.0.4.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../lib/javax.jms-api-2.0.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

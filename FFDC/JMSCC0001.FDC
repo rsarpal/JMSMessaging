@@ -1,0 +1,376 @@
+----------------------------------START FFST------------------------------------
+C:\Rishu\Intellij\jms\FFDC\JMSCC0001.FDC PID:8320
+
+                                    JMS Common Client First Failure Symptom Report
+                                            
+
+Product          :- IBM MQ classes for JMS
+Date/Time        :- Tue Oct 09 22:54:30 EEST 2018
+System time      :- 1539114870795
+Operating System :- Windows 10
+UserID           :- rsarpal
+Java Vendor      :- Oracle Corporation
+Java Version     :- 9.0.4+11
+
+Source Class     :- com.ibm.mq.jmqi.remote.rfp.RfpTSH
+Source Method    :- checkEyecatcher()
+ProbeID          :- 01
+Thread           :- name=main priority=5 group=main ccl=jdk.internal.loader.ClassLoaders$AppClassLoader@3b764bce
+
+                                      Data
+                                      ----
+
+|   Description  :-  Invalid data received
+|   eyecatcheR   :-  ByteArray len=4  id=[B@73eb439a
+|   0000:  3130 3120                                  101 
+
+
+                              Version information
+                              -------------------
+
+IBM MQ JMS Provider
+9.0.4.0
+p904-L171030.1
+Production
+Component Title: IBM MQ JMS Provider
+Component Name:  com.ibm.msg.client.wmq
+Version:         9.0.4.0
+Class Name:      class com.ibm.msg.client.wmq.factories.WMQComponent
+CMVC:            p904-L171030.1
+Jar location:    file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+Factory Class:   class com.ibm.msg.client.wmq.factories.WMQFactoryFactory
+
+IBM MQLight Service for Bluemix JMS Provider
+
+p904-L171030.1
+Production
+Component Title: IBM MQLight Service for Bluemix JMS Provider
+Component Name:  com.ibm.msg.client.mqlight
+Version:         
+Class Name:      class com.ibm.msg.client.mqlight.MQLightComponent
+CMVC:            p904-L171030.1
+mqjbnd level:    CC=2;RC=2495;AMQ8568: The native JNI library 'mqjbnd64' was not found. For a client installation this is expected. [3=mqjbnd64]::no mqjbnd64 in java.library.path
+Jar location:    file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+Factory Class:   class com.ibm.msg.client.mqlight.factories.MQLightFactoryFactory
+
+Common Services for Java Platform, Standard Edition
+9.0.4.0
+p904-L171030.1
+Production
+inPreferenceTo[0]: com.ibm.msg.client.commonservices.j2me
+Component Title:   Common Services for Java Platform, Standard Edition
+Component Name:    com.ibm.msg.client.commonservices.j2se
+Version:           9.0.4.0
+Class Name:        class com.ibm.msg.client.commonservices.j2se.J2SEComponent
+CMVC:              p904-L171030.1
+Jar location:      file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+Factory Class:     class com.ibm.msg.client.commonservices.j2se.CommonServicesImplementation
+
+Java Message Service Client
+9.0.4.0
+p904-L171030.1
+Production
+Component Title: Java Message Service Client
+Component Name:  com.ibm.msg.client.jms
+Version:         9.0.4.0
+Class Name:      class com.ibm.msg.client.jms.internal.JMSComponent
+CMVC:            p904-L171030.1
+Jar location:    file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+Factory Class:   null
+
+IBM MQ classes for Java Message Service
+9.0.4.0
+p904-L171030.1
+Production
+Component Title: IBM MQ classes for Java Message Service
+Component Name:  com.ibm.mq.jms
+Version:         9.0.4.0
+BuiltWith:       IBM Corporation  pxa6480sr1fp10-20150711_01 (SR1 FP10) Linux
+Class Name:      class com.ibm.mq.jms.MQJMSComponent
+CMVC:            p904-L171030.1
+Jar location:    file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+Factory Class:   null
+
+IBM MQ classes for Java
+9.0.4.0
+p904-L171030.1
+Production
+Component Title: IBM MQ classes for Java
+Component Name:  com.ibm.mq
+Version:         9.0.4.0
+BasedOn:         
+Class Name:      class com.ibm.mq.MQJavaComponent
+CMVC:            p904-L171030.1
+Jar location:    file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+APARs:           
+title:           
+Factory Class:   null
+
+
+
+                                  Stack trace
+                                  -----------
+
+Stack trace to show the location of the FFST call
+|   FFST Location  :-  java.lang.Exception
+|   	at com.ibm.msg.client.commonservices.trace.Trace.getCurrentPosition(Trace.java:2149)
+|   	at com.ibm.msg.client.commonservices.trace.Trace.createFFSTString(Trace.java:2056)
+|   	at com.ibm.msg.client.commonservices.trace.Trace.ffstInternal(Trace.java:1938)
+|   	at com.ibm.msg.client.commonservices.trace.Trace.ffst(Trace.java:1739)
+|   	at com.ibm.mq.jmqi.remote.rfp.RfpTSH.checkEyecatcher(RfpTSH.java:820)
+|   	at com.ibm.mq.jmqi.remote.impl.RemoteConnection.receiveTSH(RemoteConnection.java:3079)
+|   	at com.ibm.mq.jmqi.remote.impl.RemoteConnection.initSess(RemoteConnection.java:1274)
+|   	at com.ibm.mq.jmqi.remote.impl.RemoteConnection.connect(RemoteConnection.java:895)
+|   	at com.ibm.mq.jmqi.remote.impl.RemoteConnectionSpecification.getSessionFromNewConnection(RemoteConnectionSpecification.java:416)
+|   	at com.ibm.mq.jmqi.remote.impl.RemoteConnectionSpecification.getSession(RemoteConnectionSpecification.java:312)
+|   	at com.ibm.mq.jmqi.remote.impl.RemoteConnectionPool.getSession(RemoteConnectionPool.java:146)
+|   	at com.ibm.mq.jmqi.remote.api.RemoteFAP.jmqiConnect(RemoteFAP.java:1761)
+|   	at com.ibm.mq.jmqi.remote.api.RemoteFAP.jmqiConnect(RemoteFAP.java:1285)
+|   	at com.ibm.mq.ese.jmqi.InterceptedJmqiImpl.jmqiConnect(InterceptedJmqiImpl.java:377)
+|   	at com.ibm.mq.ese.jmqi.ESEJMQI.jmqiConnect(ESEJMQI.java:562)
+|   	at com.ibm.msg.client.wmq.internal.WMQConnection.<init>(WMQConnection.java:357)
+|   	at com.ibm.msg.client.wmq.factories.WMQConnectionFactory.createV7ProviderConnection(WMQConnectionFactory.java:8475)
+|   	at com.ibm.msg.client.wmq.factories.WMQConnectionFactory.createProviderConnection(WMQConnectionFactory.java:7815)
+|   	at com.ibm.msg.client.jms.admin.JmsConnectionFactoryImpl._createConnection(JmsConnectionFactoryImpl.java:303)
+|   	at com.ibm.msg.client.jms.admin.JmsConnectionFactoryImpl.createContext(JmsConnectionFactoryImpl.java:444)
+|   	at com.rsarpal.jmsMessaging.JmsMessaging.connect(JmsMessaging.java:162)
+|   	at JMS.main(JMS.java:14)
+|   
+
+                            Property Store Contents
+                            -----------------------
+
+All currently set properties
+|   awt.toolkit                    :-  sun.awt.windows.WToolkit
+|   file.encoding                  :-  UTF-8
+|   file.encoding.pkg              :-  sun.io
+|   file.separator                 :-  \
+|   java.awt.graphicsenv           :-  sun.awt.Win32GraphicsEnvironment
+|   java.awt.printerjob            :-  sun.awt.windows.WPrinterJob
+|   java.class.path                :-  C:\Rishu\Intellij\jms\out\production\jmsMessaging;C:\Rishu\Intellij\lib\com.ibm.mq.allclient-9.0.4.0.jar;C:\Rishu\Intellij\lib\javax.jms-api-2.0.1.jar
+|   java.class.version             :-  53.0
+|   java.home                      :-  C:\Program Files\Java\jdk-9.0.4
+|   java.io.tmpdir                 :-  C:\Users\rsarpal\AppData\Local\Temp\
+|   java.library.path              :-  C:\Program Files\Java\jdk-9.0.4\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\HP\Virtual User Generator\strawberry-perl\perl\bin;"C:\Users\rsarpal\Downloads\chromedriver_win32 (1)";C:\Users\rsarpal\Downloads\chromedriver_win32 (1)\chromedriver.exe;C:\Users\rsarpal\Downloads\geckodriver-v0.8.0-win32\geckodriver.exe;C:\Users\rsarpal\AppData\Local\GitHubDesktop\bin;C:\Program Files\Java\jdk-9.0.4\bin;.
+|   java.runtime.name              :-  Java(TM) SE Runtime Environment
+|   java.runtime.version           :-  9.0.4+11
+|   java.specification.name        :-  Java Platform API Specification
+|   java.specification.vendor      :-  Oracle Corporation
+|   java.specification.version     :-  9
+|   java.vendor                    :-  Oracle Corporation
+|   java.vendor.url                :-  http://java.oracle.com/
+|   java.vendor.url.bug            :-  http://bugreport.java.com/bugreport/
+|   java.version                   :-  9.0.4
+|   java.vm.compressedOopsMode     :-  32-bit
+|   java.vm.info                   :-  mixed mode
+|   java.vm.name                   :-  Java HotSpot(TM) 64-Bit Server VM
+|   java.vm.specification.name     :-  Java Virtual Machine Specification
+|   java.vm.specification.vendor   :-  Oracle Corporation
+|   java.vm.specification.version  :-  9
+|   java.vm.vendor                 :-  Oracle Corporation
+|   java.vm.version                :-  9.0.4+11
+|   jdk.debug                      :-  release
+|   line.separator                 :-  
+|   
+|   os.arch                        :-  amd64
+|   os.name                        :-  Windows 10
+|   os.version                     :-  10.0
+|   path.separator                 :-  ;
+|   sun.arch.data.model            :-  64
+|   sun.boot.library.path          :-  C:\Program Files\Java\jdk-9.0.4\bin
+|   sun.cpu.endian                 :-  little
+|   sun.cpu.isalist                :-  amd64
+|   sun.desktop                    :-  windows
+|   sun.io.unicode.encoding        :-  UnicodeLittle
+|   sun.java.command               :-  JMS
+|   sun.java.launcher              :-  SUN_STANDARD
+|   sun.jnu.encoding               :-  Cp1252
+|   sun.management.compiler        :-  HotSpot 64-Bit Tiered Compilers
+|   sun.os.patch.level             :-  
+|   user.country                   :-  US
+|   user.dir                       :-  C:\Rishu\Intellij\jms
+|   user.home                      :-  C:\Users\rsarpal
+|   user.language                  :-  en
+|   user.name                      :-  rsarpal
+|   user.script                    :-  
+|   user.timezone                  :-  
+|   user.variant                   :-  
+
+                           WorkQueueMananger Contents
+                           --------------------------
+
+|   Current ThreadPool size      :-  0
+|   Maintain ThreadPool size     :-  false
+|   Maximum ThreadPool size      :-  -1
+|   ThreadPool inactive timeout  :-  0
+
+                               Runtime properties
+                               ------------------
+
+|   Available processors         :-  4
+|   Free memory in bytes (now)   :-  41891328
+|   Max memory in bytes          :-  1042284544
+|   Total memory in bytes (now)  :-  67108864
+
+                           Component Manager Contents
+                           --------------------------
+
+Common Services Components:
+|   CMVC               :-  p904-L171030.1
+|   Class Name         :-  class com.ibm.msg.client.commonservices.j2se.J2SEComponent
+|   Component Name     :-  com.ibm.msg.client.commonservices.j2se
+|   Component Title    :-  Common Services for Java Platform, Standard Edition
+|   Factory Class      :-  class com.ibm.msg.client.commonservices.j2se.CommonServicesImplementation
+|   Jar location       :-  file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+|   Version            :-  9.0.4.0
+|   inPreferenceTo[0]  :-  com.ibm.msg.client.commonservices.j2me
+
+Messaging Provider Components:
+|   CMVC             :-  p904-L171030.1
+|   Class Name       :-  class com.ibm.msg.client.wmq.factories.WMQComponent
+|   Component Name   :-  com.ibm.msg.client.wmq
+|   Component Title  :-  IBM MQ JMS Provider
+|   Factory Class    :-  class com.ibm.msg.client.wmq.factories.WMQFactoryFactory
+|   Jar location     :-  file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+|   Version          :-  9.0.4.0
+
+|   CMVC             :-  p904-L171030.1
+|   Class Name       :-  class com.ibm.msg.client.mqlight.MQLightComponent
+|   Component Name   :-  com.ibm.msg.client.mqlight
+|   Component Title  :-  IBM MQLight Service for Bluemix JMS Provider
+|   Factory Class    :-  class com.ibm.msg.client.mqlight.factories.MQLightFactoryFactory
+|   Jar location     :-  file:/C:/Rishu/Intellij/lib/com.ibm.mq.allclient-9.0.4.0.jar
+|   Version          :-  
+|   mqjbnd level     :-  CC=2;RC=2495;AMQ8568: The native JNI library 'mqjbnd64' was not found. For a client installation this is expected. [3=mqjbnd64]::no mqjbnd64 in java.library.path
+
+
+
+
+                         Provider Specific Information
+                         -----------------------------
+
+Overview of JMS System
+Num. Contexts    : 0
+Num. Connections : 0
+Num. Sessions    : 0
+Num. Consumers   : 0
+Num. Producers   : 0
+
+Detailed JMS System Information
+Contexts      : 
+Connections      : 
+Sessions         : 
+Consumers        : 
+Producers        : 
+
+All Thread Information
+
+                          Name : Common-Cleaner
+                      Priority : 8
+                   ThreadGroup : java.lang.ThreadGroup[name=InnocuousThreadGroup,maxpri=10]
+                            ID : 10
+                         State : TIMED_WAITING
+                         Stack : java.lang.Object.wait(Object.java:-2)
+                               : java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
+                               : jdk.internal.ref.CleanerImpl.run(CleanerImpl.java:148)
+                               : java.lang.Thread.run(Thread.java:844)
+                               : jdk.internal.misc.InnocuousThread.run(InnocuousThread.java:122)
+
+                          Name : Finalizer
+                      Priority : 8
+                   ThreadGroup : java.lang.ThreadGroup[name=system,maxpri=10]
+                            ID : 3
+                         State : WAITING
+                         Stack : java.lang.Object.wait(Object.java:-2)
+                               : java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
+                               : java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:172)
+                               : java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:216)
+
+                          Name : Monitor Ctrl-Break
+                      Priority : 5
+                   ThreadGroup : java.lang.ThreadGroup[name=main,maxpri=10]
+                            ID : 11
+                         State : RUNNABLE
+                         Stack : java.net.SocketInputStream.socketRead0(SocketInputStream.java:-2)
+                               : java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+                               : java.net.SocketInputStream.read(SocketInputStream.java:171)
+                               : java.net.SocketInputStream.read(SocketInputStream.java:141)
+                               : sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+                               : sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+                               : sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+                               : java.io.InputStreamReader.read(InputStreamReader.java:185)
+                               : java.io.BufferedReader.fill(BufferedReader.java:161)
+                               : java.io.BufferedReader.readLine(BufferedReader.java:326)
+                               : java.io.BufferedReader.readLine(BufferedReader.java:392)
+                               : com.intellij.rt.execution.application.AppMainV2$1.run(AppMainV2.java:64)
+
+                          Name : JMSCCThreadPoolMaster
+                      Priority : 5
+                   ThreadGroup : java.lang.ThreadGroup[name=main,maxpri=10]
+                            ID : 15
+                         State : WAITING
+                         Stack : java.lang.Object.wait(Object.java:-2)
+                               : java.lang.Object.wait(Object.java:516)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$WorkQueueManagerThread.waitForNotification(WorkQueueManagerImplementation.java:672)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$WorkQueueManagerThread.waitForNotification(WorkQueueManagerImplementation.java:641)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$WorkQueueManagerThread.run(WorkQueueManagerImplementation.java:908)
+
+                          Name : Signal Dispatcher
+                      Priority : 9
+                   ThreadGroup : java.lang.ThreadGroup[name=system,maxpri=10]
+                            ID : 4
+                         State : RUNNABLE
+
+                          Name : Reference Handler
+                      Priority : 10
+                   ThreadGroup : java.lang.ThreadGroup[name=system,maxpri=10]
+                            ID : 2
+                         State : RUNNABLE
+                         Stack : java.lang.ref.Reference.waitForReferencePendingList(Reference.java:-2)
+                               : java.lang.ref.Reference.processPendingReferences(Reference.java:174)
+                               : java.lang.ref.Reference.access$000(Reference.java:44)
+                               : java.lang.ref.Reference$ReferenceHandler.run(Reference.java:138)
+
+                          Name : Attach Listener
+                      Priority : 5
+                   ThreadGroup : java.lang.ThreadGroup[name=system,maxpri=10]
+                            ID : 5
+                         State : RUNNABLE
+
+                          Name : main
+                      Priority : 5
+                   ThreadGroup : java.lang.ThreadGroup[name=main,maxpri=10]
+                            ID : 1
+                         State : RUNNABLE
+                         Stack : java.lang.Thread.dumpThreads(Thread.java:-2)
+                               : java.lang.Thread.getAllStackTraces(Thread.java:1705)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer.generateThreadInfo(DefaultTracer.java:1164)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer.access$1200(DefaultTracer.java:145)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer$8.run(DefaultTracer.java:1104)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer$8.run(DefaultTracer.java:1028)
+                               : java.security.AccessController.doPrivileged(AccessController.java:-2)
+                               : com.ibm.msg.client.commonservices.j2se.trace.DefaultTracer.ffst(DefaultTracer.java:1028)
+                               : com.ibm.msg.client.commonservices.j2se.wmqsupport.TracerImpl.ffst(TracerImpl.java:174)
+                               : com.ibm.msg.client.commonservices.trace.Trace.ffstInternal(Trace.java:1943)
+                               : com.ibm.msg.client.commonservices.trace.Trace.ffst(Trace.java:1739)
+                               : com.ibm.mq.jmqi.remote.rfp.RfpTSH.checkEyecatcher(RfpTSH.java:820)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteConnection.receiveTSH(RemoteConnection.java:3079)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteConnection.initSess(RemoteConnection.java:1274)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteConnection.connect(RemoteConnection.java:895)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteConnectionSpecification.getSessionFromNewConnection(RemoteConnectionSpecification.java:416)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteConnectionSpecification.getSession(RemoteConnectionSpecification.java:312)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteConnectionPool.getSession(RemoteConnectionPool.java:146)
+                               : com.ibm.mq.jmqi.remote.api.RemoteFAP.jmqiConnect(RemoteFAP.java:1761)
+                               : com.ibm.mq.jmqi.remote.api.RemoteFAP.jmqiConnect(RemoteFAP.java:1285)
+                               : com.ibm.mq.ese.jmqi.InterceptedJmqiImpl.jmqiConnect(InterceptedJmqiImpl.java:377)
+                               : com.ibm.mq.ese.jmqi.ESEJMQI.jmqiConnect(ESEJMQI.java:562)
+                               : com.ibm.msg.client.wmq.internal.WMQConnection.<init>(WMQConnection.java:357)
+                               : com.ibm.msg.client.wmq.factories.WMQConnectionFactory.createV7ProviderConnection(WMQConnectionFactory.java:8475)
+                               : com.ibm.msg.client.wmq.factories.WMQConnectionFactory.createProviderConnection(WMQConnectionFactory.java:7815)
+                               : com.ibm.msg.client.jms.admin.JmsConnectionFactoryImpl._createConnection(JmsConnectionFactoryImpl.java:303)
+                               : com.ibm.msg.client.jms.admin.JmsConnectionFactoryImpl.createContext(JmsConnectionFactoryImpl.java:444)
+                               : com.rsarpal.jmsMessaging.JmsMessaging.connect(JmsMessaging.java:162)
+                               : JMS.main(JMS.java:14)
+
+First Failure Symptom Report completed at Tue Oct 09 22:54:30 EEST 2018
+------------------------------------END FFST------------------------------------
