@@ -131,13 +131,14 @@ public class JmsMQMessagingSession  {
     public String jmsReceiveFromQ(int TIMEOUT_MS){
         String receivedMessage="";
 
-        try {
+		try (JMSConsumer recvConsumer = sessionContext.createConsumer(destination)){ // autoclosable
+        //try {
 
 			//context = cf.createContext();
             //destination = context.createQueue("queue:///" + QUEUE_NAME);
 			
-            consumer = sessionContext.createConsumer(destination); // autoclosable
-            receivedMessage = consumer.receiveBody(String.class, TIMEOUT_MS); // in ms or 15 seconds
+           // consumer = sessionContext.createConsumer(destination); // autoclosable
+            receivedMessage = recvConsumer.receiveBody(String.class, TIMEOUT_MS); // in ms or 15 seconds
 
 
         } catch (Exception e){
@@ -153,11 +154,11 @@ public class JmsMQMessagingSession  {
 	    BytesMessage receivedByteMessage;
 		String receivedMessage="";
 
-        try {
-			
-            consumer = sessionContext.createConsumer(destination); // autoclosable
-            //receivedByteMessage = consumer.receiveBody(byte[].class, TIMEOUT_MS); // in ms or 15 seconds			
-			receivedByteMessage = (BytesMessage)consumer.receive();
+		 try (JMSConsumer recvConsumer = sessionContext.createConsumer(destination)){ // autoclosable
+        //try {consumer = sessionContext.createConsumer(destination); // autoclosable
+            //receivedByteMessage = consumer.receiveBody(byte[].class, TIMEOUT_MS); // in ms or 15 seconds
+
+			receivedByteMessage = (BytesMessage)recvConsumer.receive();
 			
 			
 			//Byte to String
@@ -168,6 +169,7 @@ public class JmsMQMessagingSession  {
 			receivedMessage = new String(textBytes, codePage);
 
         } catch (Exception e){
+			 //e.printStackTrace();
             System.out.println(e);
         }
 
@@ -180,11 +182,10 @@ public class JmsMQMessagingSession  {
 	    BytesMessage receivedByteMessage;
 		String receivedMessage="";
 
-        try {
-			
-            consumer = sessionContext.createConsumer(destination); // autoclosable
+		 try (JMSConsumer recvConsumer = sessionContext.createConsumer(destination)){ // autoclosable
+        //try {consumer = sessionContext.createConsumer(destination); // autoclosable
             //receivedByteMessage = consumer.receiveBody(byte[].class, TIMEOUT_MS); // in ms or 15 seconds			
-			receivedByteMessage = (BytesMessage)consumer.receive(TIMEOUT_MS);
+			receivedByteMessage = (BytesMessage)recvConsumer.receive(TIMEOUT_MS);
 			
 			if (receivedByteMessage!=null){
 			

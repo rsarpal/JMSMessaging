@@ -208,9 +208,8 @@ public class JmsMQOperations {
 	
 	//Put string message on the Q which supports JMS 1.0 ConnectionFactory
 	 public void jmsPutOnQConnectionF(){
-        try {
-            			
-			MessageProducer mproducer = session.createProducer(destination);
+        try (MessageProducer mproducer = session.createProducer(destination)){
+
             mproducer.send(message);
 			
             //System.out.println("Sent message:\n" + message);
@@ -222,9 +221,8 @@ public class JmsMQOperations {
 
 	//Put byte message on the Q which supports JMS 1.0 ConnectionFactory
 	 public void jmsBytesPutOnQConnectionF(){
-        try {
-           			
-			MessageProducer mproducer = session.createProducer(destination);
+        try (MessageProducer mproducer = session.createProducer(destination)){
+
             mproducer.send(byteMessage);
 			
             //System.out.println("Sent message:\n" + message);
@@ -239,9 +237,9 @@ public class JmsMQOperations {
 	    BytesMessage receivedByteMessage;
 		String receivedMessage="";
 
-        try {
+        try (MessageConsumer msgconsumer = session.createConsumer(destination)){
 			
-            MessageConsumer msgconsumer = session.createConsumer(destination); //
+
             //receivedByteMessage = consumer.receiveBody(byte[].class, TIMEOUT_MS); // in ms or 15 seconds			
 			receivedByteMessage = (BytesMessage)msgconsumer.receive();
 			
@@ -327,13 +325,13 @@ public class JmsMQOperations {
     public String jmsReceiveFromQ(int TIMEOUT_MS){
         String receivedMessage="";
 
-        try {
+        try (JMSConsumer recvConsumer = context.createConsumer(destination)){ // autoclosable
 
 			//context = cf.createContext();
             //destination = context.createQueue("queue:///" + QUEUE_NAME);
 			
-            consumer = context.createConsumer(destination); // autoclosable
-            receivedMessage = consumer.receiveBody(String.class, TIMEOUT_MS); // in ms or 15 seconds
+
+            receivedMessage = recvConsumer.receiveBody(String.class, TIMEOUT_MS); // in ms or 15 seconds
 
 
         } catch (Exception e){
@@ -349,11 +347,11 @@ public class JmsMQOperations {
 	    BytesMessage receivedByteMessage;
 		String receivedMessage="";
 
-        try {
-			
-            consumer = context.createConsumer(destination); // autoclosable
+		try (JMSConsumer recvConsumer = context.createConsumer(destination)){ // autoclosable
+
+        //try {consumer = context.createConsumer(destination); // autoclosable
             //receivedByteMessage = consumer.receiveBody(byte[].class, TIMEOUT_MS); // in ms or 15 seconds			
-			receivedByteMessage = (BytesMessage)consumer.receive();
+			receivedByteMessage = (BytesMessage)recvConsumer.receive();
 			
 			
 			//Byte to String
@@ -376,11 +374,10 @@ public class JmsMQOperations {
 	    BytesMessage receivedByteMessage;
 		String receivedMessage="";
 
-        try {
-			
-            consumer = context.createConsumer(destination); // autoclosable
+		try (JMSConsumer recvConsumer = context.createConsumer(destination)){ // autoclosable
+        //try {consumer = context.createConsumer(destination); // autoclosable
             //receivedByteMessage = consumer.receiveBody(byte[].class, TIMEOUT_MS); // in ms or 15 seconds			
-			receivedByteMessage = (BytesMessage)consumer.receive(TIMEOUT_MS);
+			receivedByteMessage = (BytesMessage)recvConsumer.receive(TIMEOUT_MS);
 			
 			if (receivedByteMessage!=null){
 			

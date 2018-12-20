@@ -119,6 +119,38 @@ public class JmsMQConnection {
 
     }
 
+    // set connection parameters for the queue
+    public void connectJMS(){
+
+        try {
+            // Create a connection factory
+            ff = JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER);
+            cf = ff.createConnectionFactory();
+
+            // Set the properties
+            cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, HOST);
+            cf.setIntProperty(WMQConstants.WMQ_PORT, PORT);
+            cf.setStringProperty(WMQConstants.WMQ_CHANNEL, CHANNEL);
+            cf.setIntProperty(WMQConstants.WMQ_CONNECTION_MODE, WMQConstants.WMQ_CM_CLIENT);
+            cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER, QMGR);
+            cf.setStringProperty(WMQConstants.WMQ_APPLICATIONNAME, APP_NAME);
+            cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
+            cf.setStringProperty(WMQConstants.USERID, APP_USER);
+            cf.setStringProperty(WMQConstants.PASSWORD, APP_PASSWORD);
+
+            jmsConnection = cf.createConnection();
+            jmsSession = jmsConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+            destination = jmsSession.createQueue(QUEUE_NAME);
+
+        }catch (JMSException jmsex){
+            System.out.println(jmsex);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
 	
 	 public void disconnect(){
 		 
