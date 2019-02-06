@@ -45,6 +45,9 @@ import com.ibm.msg.client.jms.JmsFactoryFactory;
 import com.ibm.msg.client.wmq.WMQConstants;
 import com.ibm.mq.headers.CCSID;
 import com.ibm.mq.jms.MQDestination;
+import com.ibm.mq.*;
+import com.ibm.mq.constants.MQConstants;
+import com.ibm.mq.MQException;
 
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
@@ -64,6 +67,7 @@ public class JmsMQConnection {
     private  String QUEUE_NAME ; // = "InterchangeLoaderQ"; // Queue that the application uses to put and get messages to and from
 	private  String APP_NAME; //dummy name of the app to recognise files
     private  int PORT; // Host name or IP address
+    private  MQQueueManager qmgr=null;
 
 
     private JmsFactoryFactory ff; //IBM JMS 2.0
@@ -151,11 +155,46 @@ public class JmsMQConnection {
 
     }
 
+    public void mqDepth(){
+        try {
+            this.qmgr= createQueueManager();
+        } catch (MQException me){
+            me.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private MQQueueManager createQueueManager() throws MQException {
+        MQEnvironment.channel = CHANNEL;
+        MQEnvironment.port = PORT;
+        MQEnvironment.hostname = HOST;
+        MQEnvironment.userID=APP_USER;
+        MQEnvironment.password=APP_PASSWORD;
+        MQEnvironment.properties.put(MQConstants.TRANSPORT_PROPERTY, MQConstants.TRANSPORT_MQSERIES);
+        return new MQQueueManager(QMGR);
+    }
+
+    public int depthOf(String queueName) throws MQException {
+        MQQueue queue = qmgr.accessQueue(queueName, MQConstants.MQOO_INQUIRE | MQConstants.MQOO_INPUT_AS_Q_DEF, null, null, null);
+        int depth= queue.getCurrentDepth();
+        queue.close();
+
+        return  depth;
+    }
 	
 	 public void disconnect(){
 		 
-		 context.close();		 
+		 context.close();
+
+		 if (qmgr!=null){
+             try {
+                 qmgr.close();
+             } catch (MQException me){
+                 me.printStackTrace();
+             }
+         }
 	 }
+
 
 
 

@@ -3,9 +3,11 @@ import com.ibm.mq.*;
 import com.ibm.mq.constants.MQConstants;
 import com.ibm.mq.MQException;
 
+
 public class MQDepth {
 
  // Create variables for the connection to MQ
+
     private  String HOST; // Host name or IP address
     private  String CHANNEL ;// = "DEV.APP.SVRCONN"; // Channel name
     private  String QMGR;   //  = "QM1"; // Queue manager name
@@ -16,7 +18,7 @@ public class MQDepth {
     private  int PORT; // Host name or IP address
 	private  MQQueueManager qmgr;
 	
-	public 	MQDepth(){
+	public MQDepth(){
 	}
 	
 	public void connectQManager(String host, int port,String channel, String manager, String user, String password, String appname){
